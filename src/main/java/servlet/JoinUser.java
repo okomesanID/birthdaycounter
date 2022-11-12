@@ -43,8 +43,6 @@ public class JoinUser extends HttpServlet {
 			  JoinUserLogic logic = new JoinUserLogic();
 			  logic.execute(user);
 		
-			  //ログイン処理を同時に行う
-			  session.setAttribute("loginUser",user);
 			  // 不要となったセッションスコープ内のインスタンスを削除
 			  session.removeAttribute("joinUser");
 		
@@ -93,7 +91,6 @@ public class JoinUser extends HttpServlet {
 		  try {
 			  age= Age.birthday(year,month,day);
 		  } catch (ParseException e) {
-			  // TODO 自動生成された catch ブロック
 			  e.printStackTrace();
 		  }
 		  
@@ -105,29 +102,29 @@ public class JoinUser extends HttpServlet {
 			  RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/joinForm.jsp"); 
 			  dispatcher.forward(request, response);
 		  }
-		  
-		  // 登録するユーザーの情報を設定
-		  UserBean user =new UserBean(name,pass,checkpass,year,month,day,age);
-		  
-		  //ユーザー登録確認処理
-		  JoinConfirmLogic ConfirmLogic = new JoinConfirmLogic(); 
-		  boolean isLogin = ConfirmLogic.execute(user);
-		
-		  //入力成功時の処理
-		  if(isLogin) {
-			  
-			//ユーザー情報をセッションスコープに保存
-			HttpSession session =request.getSession();
-			session.setAttribute("joinUser",user);
-				
-			//ユーザー登録確認画面にフォワード
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/joinConfirm.jsp"); 
-			dispatcher.forward(request, response); 
-		  }
 		  else {
-			  RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/joinForm.jsp"); 
-			  dispatcher.forward(request, response);
-		   }
-
+			  // 登録するユーザーの情報を設定
+			  UserBean user =new UserBean(name,pass,checkpass,year,month,day,age);
+			  
+			  //ユーザー登録確認処理
+			  JoinConfirmLogic ConfirmLogic = new JoinConfirmLogic(); 
+			  boolean isLogin = ConfirmLogic.execute(user);
+			
+			  //入力成功時の処理
+			  if(isLogin) {
+				  
+				//ユーザー情報をセッションスコープに保存
+				HttpSession session =request.getSession();
+				session.setAttribute("joinUser",user);
+					
+				//ユーザー登録確認画面にフォワード
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/joinConfirm.jsp"); 
+				dispatcher.forward(request, response); 
+			  }
+			  else {
+				  RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/joinForm.jsp"); 
+				  dispatcher.forward(request, response);
+			  }
+		 }
 	 }
 }

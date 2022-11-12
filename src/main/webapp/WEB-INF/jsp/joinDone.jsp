@@ -13,11 +13,10 @@
 	<body>
 		<!-- header -->
 		<jsp:include page="/header.jsp" />
-		
 			<p>登録完了しました</p>
-			<p>さあ始めましょう</p>
+			<p>ログインして始めましょう</p>
 			<div class="submit">
-				<button type ="button"class="b b-back" onclick="location.href= '/birthdaycounter/Home'">ホーム画面へ</button>
+				<button type ="button"class="b b-back" onclick="location.href= '/birthdaycounter/Login'">ログイン画面へ</button>
 			</div>
 			
 	</body>

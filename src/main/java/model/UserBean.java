@@ -12,9 +12,7 @@ public class UserBean implements Serializable {
 	private int day;
 	private int age; 
 	
-	
-	public UserBean() {}
-	
+	public UserBean() { }
 	//ユーザ登録確認処理に使用
 	public UserBean(String name, String pass,String checkpass, String year, String month, String day, int age) { 
 		this.name = name; 

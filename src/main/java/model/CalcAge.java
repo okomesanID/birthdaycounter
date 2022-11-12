@@ -22,10 +22,10 @@ public class CalcAge {
 		 int age =intYear-year;	 
 		 
 		 //年齢の確認計算
-		 if(calToday.get(Calendar.MONTH) < month) {
+		 if(calToday.get(Calendar.MONTH)+1 < month) {
 			 age -=1;
 		 }
-		 else if(calToday.get(Calendar.MONTH) == month) {
+		 else if(calToday.get(Calendar.MONTH)+1 == month) {
 			 if(calToday.get(Calendar.DATE) < day) {
 				 age -=1;
 			 }

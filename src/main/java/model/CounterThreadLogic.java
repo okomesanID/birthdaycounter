@@ -5,9 +5,10 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 
-public class CounterBirth {
-
-	public long counter(int month, int day) throws ParseException {	 
+public class CounterThreadLogic {
+	
+	//残りの誕生日を計算するメソッド
+	 public long counter(int month, int day) throws ParseException {	 
 		 
 		 //CalTodayは現在の日付、calTempは日付格納用
 		 Calendar calToday = Calendar.getInstance();
@@ -26,6 +27,6 @@ public class CounterBirth {
 		 }
 		 long diff=(dteTemp.getTime() -dteToday.getTime())/(24*60*60*1000);
 		 
-		 return diff;
+		 return diff+1;
 	 }
 }
