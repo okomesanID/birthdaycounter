@@ -133,12 +133,6 @@ public class ThreadDAO {
 			PreparedStatement pStmt1 = conn.prepareStatement(sql1);
 			pStmt1.setInt(1, id);
 			
-			//USERLISTのDELETE文を準備
-			String sql2 = "DELETE FROM USERLIST "
-					+ "WHERE ID = '?'";	
-			PreparedStatement pStmt2 = conn.prepareStatement(sql2);
-			pStmt2.setInt(1, id);
-			
 			//COMMENTLISTのDELETE文の実行
 			int result = pStmt.executeUpdate();
 			if(result !=1) {
@@ -147,11 +141,6 @@ public class ThreadDAO {
 			//THREADLISTのDELETE文の実行
 			int result1 = pStmt1.executeUpdate();
 			if(result1 !=1) {
-				return false;
-			}
-			//USERLISTのDELETE文の実行
-			int result2 = pStmt2.executeUpdate();
-			if(result2 !=1) {
 				return false;
 			}
 			
