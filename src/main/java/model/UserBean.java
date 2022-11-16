@@ -10,11 +10,11 @@ public class UserBean implements Serializable {
 	private int year;
 	private int month;
 	private int day;
-	private int age; 
+	private int age;
+	private int residue;
 	
-	public UserBean() { }
 	//ユーザ登録確認処理に使用
-	public UserBean(String name, String pass,String checkpass, String year, String month, String day, int age) { 
+	public UserBean(String name, String pass,String checkpass, String year, String month, String day, int age, int residue) { 
 		this.name = name; 
 		this.pass = pass;
 		this.checkpass = checkpass; 
@@ -22,22 +22,25 @@ public class UserBean implements Serializable {
 		this.month=Integer.parseInt(month);
 		this.day = Integer.parseInt(day);
 		this.age = age;
+		this.residue = residue;
 	}
 	
 	//DB内のユーザーチェック用
-	public UserBean(int id,String name) { 
+	public UserBean(int id,String name, int residue) { 
 		this.id = id; 
 		this.name = name; 
+		this.residue = residue;
 	}
 	
 	//データベース登録用
-	public UserBean(String name, String pass, int year, int month, int day, int age) { 
+	public UserBean(String name, String pass, int year, int month, int day, int age, int residue) { 
 		this.name = name; 
 		this.pass = pass; 
 		this.age = age; 
 		this.year = year;
 		this.month=month;
 		this.day = day;
+		this.residue = residue;
 	}
 	
 	//ログイン処理用
@@ -59,5 +62,6 @@ public class UserBean implements Serializable {
 	public int getMonth() {return month;}
 	public int getDay() {return day;}
 	public int getAge() {return age;} 
+	public int getResidue() {return residue;} 
 
 }

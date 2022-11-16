@@ -13,11 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.CheckThread;
-import model.CounterBirthLogic;
+import model.CounterPostLogic;
 import model.CounterThreadLogic;
 import model.GetThreadListLogic;
 import model.PostThreadLogic;
 import model.ThreadBean;
+import model.ThreadDeleteOrder;
 import model.UserBean;
 
 @WebServlet("/Home")
@@ -45,7 +46,7 @@ public class Home extends HttpServlet {
 			if(check) {
 				session.setAttribute("logincheck",3);
 				//再投稿可能までの日数をチェック
-				CounterThreadLogic thread = new CounterThreadLogic();
+				CounterPostLogic thread = new CounterPostLogic();
 				 try {
 					long count = thread.counter(loginUser.getMonth(),loginUser.getDay());
 					session.setAttribute("CounterThread",count);
@@ -60,11 +61,14 @@ public class Home extends HttpServlet {
 		 List<ThreadBean> ThreadList = getListLogic.execute();
 		 request.setAttribute("ThreadList", ThreadList);
 		 
-		 //誕生日の残り日数を取得
-		 CounterBirthLogic birth = new CounterBirthLogic();
+		 //誕生日までの残り日数を取得
+		 CounterThreadLogic birth = new CounterThreadLogic();
 		 List<Long> count = birth.counter();
-		 
 		 session.setAttribute("counterbirth",count);
+		 
+		 //スレッドの削除処理
+		 ThreadDeleteOrder diff = new ThreadDeleteOrder();
+		 diff. execute(); 
 		 
 		 //ホーム画面にフォワード
 		 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
@@ -89,15 +93,14 @@ public class Home extends HttpServlet {
 				//スレッドリストをリストに追加
 				ThreadBean mutter = new ThreadBean(loginUser.getName(),loginUser.getAge(),text);
 				PostThreadLogic postThreadLogic = new PostThreadLogic(); 
-				postThreadLogic.execute(mutter,loginUser.getId());
-				
+				postThreadLogic.execute(mutter,loginUser.getId());	
 			}
 			else {
 				//エラーメッセージをリクエストスコープに保存
 				request.setAttribute("errorMsg", "入力されていません");
 			}
 			
-			//スレッドリストを取得して、リクエストスコープに保存
+			 //スレッドリストを取得して、リクエストスコープに保存
 			 GetThreadListLogic getListLogic = new  GetThreadListLogic();
 			 List<ThreadBean> ThreadList = getListLogic.execute();
 			 request.setAttribute("ThreadList", ThreadList);			
@@ -105,26 +108,26 @@ public class Home extends HttpServlet {
 			 HttpSession session = request.getSession();
 			 UserBean loginUser = (UserBean) session.getAttribute("loginUser");
 			
-				//スレッドが投稿されているかのチェック
-				CheckThread checthread =new  CheckThread();
-				boolean check = checthread.check(loginUser.getId());
-				if(check) {
-					session.setAttribute("logincheck",3);
-					//再投稿可能までの日数をチェック
-					CounterThreadLogic thread = new CounterThreadLogic();
-					 try {
-						long count = thread.counter(loginUser.getMonth(),loginUser.getDay());
-						session.setAttribute("CounterThread",count);
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
+			//スレッドが投稿されているかのチェック
+			CheckThread checthread =new  CheckThread();
+			boolean check = checthread.check(loginUser.getId());
+			if(check) {
+				session.setAttribute("logincheck",3);
+				//再投稿可能までの日数をチェック
+				CounterPostLogic thread = new CounterPostLogic();
+				try {
+					long count = thread.counter(loginUser.getMonth(),loginUser.getDay());
+					session.setAttribute("CounterThread",count);
+				} catch (ParseException e) {
+					e.printStackTrace();
 				}
+			}
 				
 			 //誕生日の残り日数を取得
-			 CounterBirthLogic birth = new CounterBirthLogic();
+			 CounterThreadLogic birth = new CounterThreadLogic();
 			 List<Long> count = birth.counter();
 			 session.setAttribute("counterbirth",count);
-
+			 
 			 //ホーム画面にフォワード
 			 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
 			 dispatcher.forward(request,response);

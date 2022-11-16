@@ -2,8 +2,7 @@
 
 <!-- pageディレクティブ -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.util.List, model.ThreadBean" %>    
+    pageEncoding="UTF-8"%>  
 <!-- tagディレクティブCore -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -55,23 +54,31 @@
 			</c:choose>
 		</div>
 		<!-- スレッドリスト -->
-		<div class="ThreadList"> 				
-				<!-- 画面につぶやきを出力する処理 -->
-				<c:forEach var="i" begin="0" end="${ThreadList.size() -1}" step="1">
-					<a>
-						<c:out value="${ThreadList.get(i).getName()}" />さん
-						<c:out value="${ThreadList.get(i).getAge()}" />歳
-						<c:choose>	
-						<c:when test="${counterbirth.get(i) == 365}">
-							誕生日まであと0日<br>
-						</c:when>
-						<c:otherwise>
-							誕生日まであと<c:out value="${counterbirth.get(i)}" />日<br>
-						</c:otherwise>
-						</c:choose>
-						<c:out value="${ThreadList.get(i).getText()}" /><br>
-					</a>
-				</c:forEach>
+		<div class="ThreadList"> 
+			<c:choose>
+				<c:when test ="${ThreadList.size()-1 < 0}">
+				<p>まだスレッドがありません。</p>
+				</c:when>
+				<c:otherwise>
+					<!-- 画面にスレッドを出力する処理 -->
+					<c:forEach var="i" begin="0" end="${ThreadList.size()-1}" step="1">
+						<a href= "/birthdaycounter/Comment?ThreadNo=${ThreadList.get(i).getId()}">
+							<c:out value="${ThreadList.get(i).getName()}" />さん
+							<c:out value="${ThreadList.get(i).getAge()}" />歳
+							<c:choose>	
+							<c:when test="${counterbirth.get(i) == 365}">
+								誕生日おめでとうございます！<br>
+							</c:when>
+							<c:otherwise>
+								誕生日まであと<c:out value="${counterbirth.get(i)}" />日
+								　(post:<c:out value="${ThreadList.get(i).getPostDate()}" />)<br>
+							</c:otherwise>
+							</c:choose>
+							<c:out value="${ThreadList.get(i).getText()}" /><br>
+						</a>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</body>
 </html>

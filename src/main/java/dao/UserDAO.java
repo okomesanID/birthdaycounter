@@ -30,8 +30,8 @@ public class UserDAO {
 		          JDBC_URL, DB_USER, DB_PASS)) {
 			
 			//INSERT文の準備
-			String sql = "INSERT INTO USERLIST(NAME, PASS, BIRTHYEAR, BIRTHMONTH, BIRTHDAY, AGE) "
-					+ "VALUES(?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO USERLIST(NAME, PASS, BIRTHYEAR, BIRTHMONTH, BIRTHDAY, AGE, RESIDUE) "
+					+ "VALUES(?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, user.getName());
 			pStmt.setString(2, user.getPass());
@@ -39,7 +39,8 @@ public class UserDAO {
 			pStmt.setInt(4, user.getMonth());
 			pStmt.setInt(5, user.getDay());
 			pStmt.setInt(6, user.getAge());
-		
+			pStmt.setInt(7, user.getResidue());
+			
 			// INSERT文を実行(execute)
 			int result = pStmt.executeUpdate();
 			if (result != 1) {
@@ -92,7 +93,7 @@ public class UserDAO {
 		}
 	}
 	
-	//アカウント検索用の処理
+	//検索用の処理
 	List<UserBean> userList = new ArrayList<UserBean>();
 	public List<UserBean> findAll() {
 		try {
@@ -105,7 +106,7 @@ public class UserDAO {
 			
 			//SELECT文を準備
 			String sql = "SELECT *"
-					+ "FROM USERLIST ORDER BY ID DESC";
+					+ "FROM USERLIST ORDER BY ID";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			// SELECTを実行
@@ -115,7 +116,8 @@ public class UserDAO {
 			while (rs.next()) {
 				int id = rs.getInt("ID");
 				String userName = rs.getString("NAME");
-				UserBean user = new UserBean(id, userName);
+				int residue =rs.getInt("RESIDUE");
+				UserBean user = new UserBean(id, userName, residue);
 				userList.add(user);
 			}
 		}
@@ -123,8 +125,6 @@ public class UserDAO {
 			e.printStackTrace();
 			return null;
 			}
-		
 		return userList;
-
 	}
 }
