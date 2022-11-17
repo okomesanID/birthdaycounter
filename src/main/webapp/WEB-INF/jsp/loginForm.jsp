@@ -12,7 +12,9 @@
 	<jsp:include page="/head.jsp" />
 	<body>
 		<!-- header -->
-		<jsp:include page="/header.jsp" />
+		<section id="header">
+			<jsp:include page="/header.jsp" />
+		</section>
 		
 		<!-- ログインフォーム -->
 		<div class="form-container">

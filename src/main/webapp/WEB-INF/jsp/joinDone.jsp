@@ -12,7 +12,9 @@
 	<jsp:include page="/head.jsp" />
 	<body>
 		<!-- header -->
-		<jsp:include page="/header.jsp" />
+		<section id="header">
+			<jsp:include page="/header.jsp" />
+		</section>
 			<p>登録完了しました</p>
 			<p>ログインして始めましょう</p>
 			<div class="submit">

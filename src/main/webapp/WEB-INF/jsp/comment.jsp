@@ -14,8 +14,9 @@
 	<jsp:include page="/head.jsp" />
 	<body>
 		<!-- header -->
-		<jsp:include page="/header.jsp" />
-		
+		<section id="header">
+			<jsp:include page="/header.jsp" />
+		</section>
 		<!-- スレッドタイトル -->
 		<div class="ThreadTitle"> 
 			<c:out value="${ThreadList.get(ThreadID-1).getName()}" />さん
