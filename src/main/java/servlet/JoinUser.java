@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import model.CalcAge;
 import model.CheckUser;
+import model.CounterPostLogic;
 import model.JoinConfirmLogic;
 import model.JoinUserLogic;
 import model.UserBean;
@@ -36,20 +37,26 @@ public class JoinUser extends HttpServlet {
 			  // セッションスコープに保存された登録ユーザを呼び出し
 			  HttpSession session = request.getSession();
 			  UserBean registerUser = (UserBean) session.getAttribute("joinUser");
-		
-			  // 登録処理の呼び出し
-			  UserBean user = new UserBean(registerUser.getName(),registerUser.getPass(),
-					  registerUser.getYear(),registerUser.getMonth(),registerUser.getDay(),registerUser.getAge(),registerUser.getResidue());
-			  JoinUserLogic logic = new JoinUserLogic();
-			  logic.execute(user);
-		
-			  // 不要となったセッションスコープ内のインスタンスを削除
-			  session.removeAttribute("joinUser");
-		
-			  // 登録後のフォワード先を設定
-			  forwardPath = "/WEB-INF/jsp/joinDone.jsp";
-		  }
-		
+			  
+			  //登録完了画面でロードされた場合の処理
+			  if(registerUser == null){
+				  forwardPath = "/WEB-INF/jsp/joinForm.jsp";
+			  }
+			  else {
+				  // 登録処理の呼び出し
+				  UserBean user = new UserBean(registerUser.getName(),registerUser.getPass(),
+						  registerUser.getYear(),registerUser.getMonth(),registerUser.getDay(),registerUser.getAge(),registerUser.getResidue());
+				  JoinUserLogic logic = new JoinUserLogic();
+				  logic.execute(user);
+			
+				  // 不要となったセッションスコープ内のインスタンスを削除
+				  session.removeAttribute("joinUser");
+			
+				  // 登録後のフォワード先を設定
+				  forwardPath = "/WEB-INF/jsp/joinDone.jsp";
+			  }
+		  }	  
+		  
 		  // 設定されたフォワード先にフォワード
 		  RequestDispatcher dispatcher =
 		      request.getRequestDispatcher(forwardPath);
@@ -95,7 +102,6 @@ public class JoinUser extends HttpServlet {
 		  } catch (ParseException e) {
 			  e.printStackTrace();
 		  }
-
 			
 		  //ユーザー名被りがないかチェック
 		  CheckUser checkuser =new CheckUser();
@@ -119,7 +125,16 @@ public class JoinUser extends HttpServlet {
 				//ユーザー情報をセッションスコープに保存
 				HttpSession session =request.getSession();
 				session.setAttribute("joinUser",user);
-					
+				
+				//再投稿可能までの日数をチェック
+				CounterPostLogic thread = new CounterPostLogic();
+				 try {
+					long count = thread.counter(user.getMonth(),user.getDay());
+					session.setAttribute("CounterThread",count);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				 
 				//ユーザー登録確認画面にフォワード
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/joinConfirm.jsp"); 
 				dispatcher.forward(request, response); 

@@ -9,7 +9,6 @@ public class GetThreadListLogic {
 	public List<ThreadBean> execute(){
 		ThreadDAO dao = new ThreadDAO();
 		List<ThreadBean> threadList =dao.findAll();
-		
 		return threadList;
 	}
 }

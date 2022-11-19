@@ -28,16 +28,16 @@ public class Comment extends HttpServlet {
 		      HttpServletResponse response)
 		      throws ServletException, IOException {	 
 		 
+		 //スレッドリストを取得してリクエストスコープに保存
+		 GetThreadListLogic getListLogic = new  GetThreadListLogic();
+		 List<ThreadBean> ThreadList = getListLogic.execute();
+		 request.setAttribute("ThreadList", ThreadList);
+		 
 		 //スレッドのIDを格納
 		 String threadNo = request.getParameter("ThreadNo");
 		 int ThreadNo = Integer.parseInt(threadNo);
 		 HttpSession session = request.getSession();
 		 session.setAttribute("ThreadID",ThreadNo);
-		 
-		 //スレッドリストを取得してリクエストスコープに保存
-		 GetThreadListLogic getListLogic = new  GetThreadListLogic();
-		 List<ThreadBean> ThreadList = getListLogic.execute();
-		 request.setAttribute("ThreadList", ThreadList);
 		 
 		 //ログインのチェック処理
 		 UserBean loginUser = (UserBean) session.getAttribute("loginUser");

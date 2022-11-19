@@ -40,6 +40,10 @@
 		-webkit-text-size-adjust: none;
 	}
 	
+	a {
+  		text-decoration: none;
+	}
+	
 /* Box Model */
 	*, *:before, *:after {
 		-moz-box-sizing: border-box;
@@ -53,7 +57,7 @@
 	.sp-only {
   		display: none;
 	}
-	
+
 /*----------------------------
 ヘッダー
 ----------------------------*/	
@@ -85,9 +89,7 @@
 	#header a {
 		color: #d1f1e9;
 	}
-	#header a:hover {
-		color: #ffffff !important;
-	}
+
 
 	#header > header {
 		-moz-flex-shrink: 0;
@@ -108,36 +110,43 @@
 		flex-grow: 1;
 		font-size:18px;
 	}
-	#header > nav ul {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
-	#header > nav ul li {
-		border-top: solid 2px #5ccfb0;
-		display: block;
-		padding: 0;
-	}
-	#header > nav ul li a {
-		-moz-transition: none;
-		-webkit-transition: none;
-		-ms-transition: none;
-		transition: none;
-		border: 0;
-		color: #ffffff !important;
-		display: block;
-		padding: 0.85em 0;
-		text-decoration: none;
-		font-weight: bold;
-	}
-	header > nav ul li a.active {
-		background: #fff;
-		color: #4acaa8 !important;
-	}
-	#header > nav ul li:first-child {
-		border-top: 0;
+
+/*----------------------------
+グローバルリンク
+----------------------------*/
+
+	.nav {
+	  background-color: #2BC49A;
+	  box-shadow: 0 5px 10px -6px rgba(0,0,0,.1);
+	  text-align: center;
+	  top: 0;
+	  display: flex;
+	  flex-direction:column;
+	
 	}
 	
+	.gnav-list {
+	  display: flex;
+	  list-style: none;
+	  align-items: center;
+	  justify-content: center;
+	}
+	
+	.gnav-item a {
+	  font-weight: bold;
+	  display: inline-block;
+	  color: #FFF;
+	  transition: .3s;
+	  -webkit-transform: scale(1);
+	  transform: scale(1);
+	  margin: 5px 10px;
+	}
+	.gnav-item a:hover {
+	  -webkit-transform: scale(1.2);
+	  transform: scale(1.2);
+	  color: #FFCC00 !important;
+	}
+
 /*----------------------------
 メインコンテンツ
 ----------------------------*/
@@ -163,13 +172,12 @@
 		  background: #f6f6f6;
 		  box-shadow: 0 0 0 2px #ccc inset;
 		  width: 45em;
-		 padding: 2em;
+		  padding: 2em;
 	}
 /* usernav */
-	#tow {
+	#two {
 		display: flex;
 		justify-content: center;
-		text-align: center;
 		margin:2em;
 	}
 	.thread {
@@ -178,7 +186,243 @@
 		 justify-content: center;
 		 background: #f6f6f6;
 		 box-shadow: 0 0 0 2px #ccc inset;
-		 width: 45em;
-		 padding: 2em;
+		 width: 70em;
+		 padding: 1em;
+		 margin: 10px;
 	}
+	
+/* button */
+	.t-back {
+		  font-size: 0.9rem;
+		  font-weight: 700;
+		  line-height: 1.5;
+		  position: relative;
+		  display: inline-block;
+		  padding: 0.1rem 0.2rem;
+		  cursor: pointer;
+		  -webkit-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		  -webkit-transition: all 0.3s;
+		  transition: all 0.3s;
+		  text-align: center;
+		  vertical-align: middle;
+		  text-decoration: none;
+		  letter-spacing: 0.1em;
+		  border-radius: 0.5rem;
+		  color: #FFFFFF;
+		  background-color: #2BC49A;
+		  border: none;
+		  border-bottom: 5px solid #009933;
+	}
+
+	.t-back:hover {
+		  margin-top: 3px;
+		  color: #FFFFFF;
+		  border-bottom: 2px solid #009933;
+	}
+
+	.b-back {
+		  font-size: 1rem;
+		  font-weight: 700;
+		  line-height: 1.5;
+		  position: relative;
+		  display: inline-block;
+		  padding: 0.5rem 0.5rem;
+		  cursor: pointer;
+		  -webkit-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		  -webkit-transition: all 0.3s;
+		  transition: all 0.3s;
+		  text-align: center;
+		  vertical-align: middle;
+		  text-decoration: none;
+		  letter-spacing: 0.1em;
+		  border-radius: 0.5rem;
+		  
+		  color: #FFFFFF;
+		  background-color: #2BC49A;
+		  border: none;
+		  border-bottom: 5px solid #009933;
+	}
+	
+	.b-back:hover {
+		  margin-top: 3px;
+		  color: #FFFFFF;
+		  border-bottom: 2px solid #009933;
+	}
+
+/* フォーム */	
+	.m-form-text {
+	    height: 2.4em;
+	    width: 60%;
+	    padding: 0 15px;
+	    border-radius: 4px;
+	    border: none;
+	    box-shadow: 0 0 0 1px #ccc inset;
+	    appearance: none;
+	    -webkit-appearance: none;
+	    -moz-appearance: none;
+	    margin:10px;
+	}
+
+	.m-form-text:focus {
+	    outline: 0;
+	    box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
+	}
+	
+	
+/*----------------------------
+新規登録画面
+----------------------------*/
+
+/* フォーム */	
+	.form-container{
+		display: flex;
+		justify-content: center;
+		text-align: center;
+		margin: 10% auto;/*上下左右中央*/
+		max-height: 60%;
+		max-width: 350px;
+	}
+	.form{
+		display: flex;
+		flex-direction:column;
+		justify-content: center;
+		background: #f6f6f6;
+		box-shadow: 0 0 0 2px #ccc inset;
+		width: 45em;
+		padding: 1em;
+	}
+	.formtitle p {
+		text-align: center;
+		font-size: 20px;
+		font-weight: bold;
+		margin:20px auto;	
+	}
+	.inputform {
+		margin:0 auto;
+		display: flex;
+		flex-direction:column;
+		justify-content: center;
+	}
+	.name {
+		margin:5px auto;
+	}
+	.name input{
+		padding: 5px 0px;
+		border-radius: 4px;	
+		width: 200px;
+	}
+	.pass {
+		margin:10px auto;	
+	}
+	.pass input{
+		border-radius: 4px;
+		padding: 5px 0px;
+		width: 200px;
+	}
+	.birth{
+		margin:5px auto;
+	}
+	.birth select{
+		border-radius: 4px;
+		border:1px solid;
+		padding: 5px 0px;
+		width: 63px;
+		border-color: #ccc;
+	}
+	.birth p{
+		margin:10px 0;
+	}
+	.submit {
+		margin:20px auto;	
+	}
+	.submit input{
+		padding: 2px 0px;
+	}
+
+	.error p{
+		color:red;
+		text-align: center;
+		font-size: 13px;
+	}
+	
+/* 確認画面 */		
+	.Confilm-container{
+		display: flex;
+		justify-content: center;
+		margin: 10% auto;/*上下左右中央*/
+		max-height: 60%;
+		max-width: 350px;
+	}
+	.Confilm-container button{
+		padding: 3px 3px;
+		margin:10px;
+	}
+	.text p{
+		margin:15px auto;	
+	}
+	
+/* 完了画面 */
+	.Done-container{
+		display: flex;
+		justify-content: center;
+		margin: 20% auto;/*上下左右中央*/
+		max-height: 60%;
+		max-width: 350px;
+	}
+	.Done-form{
+		display: flex;
+		flex-direction:column;
+		justify-content: center;
+		width: 45em;
+		padding: 2em;
+		text-align: center;
+	}
+	
+/*----------------------------
+ログイン画面
+----------------------------*/
+
+	.comment-container {
+		display: flex;
+		justify-content: center;
+		flex-direction:column;
+		margin:2em;
+
+	}
+	.ThreadTitle {
+		display: flex;
+		justify-content: center;
+		flex-direction:column;
+		background: #f6f6f6;
+		box-shadow: 0 0 0 2px #ccc inset;
+		width: 45em;
+		padding: 1.5em;
+		margin: 2em auto;/*上下左右中央*/
+		text-align: center;
+	}
+	.CommentList {
+		display: flex;
+		justify-content: center;
+		flex-direction:column;
+		background: #f6f6f6;
+		box-shadow: 0 0 0 2px #ccc inset;
+		width: 60em;
+		padding: 1.5em;
+		margin: 0.5em auto;/*上下左右中央*/
+	}
+	.comment p{
+		margin: 1.5em 0;
+	}
+	.CommentForm {
+		width: 100%;
+		margin: 0 auto;
+		text-align: center;
+	}
+	
 	

@@ -46,7 +46,7 @@ public class ThreadDAO {
 			
 			// SELECT文の結果をArrayListに格納
 			while (rs.next()) {
-				int id = rs.getInt("ID");
+				int id = rs.getInt("THREADLIST.ID");
 				int thread_id = rs.getInt("THREAD_ID");
 				String name = rs.getString("NAME");
 				int year = rs.getInt("BIRTHYEAR");
@@ -61,7 +61,7 @@ public class ThreadDAO {
 				
 				ThreadBean user = new ThreadBean(id, thread_id, name, year,month,day,age,text, PostDate);
 				threadList.add(user);
-				
+
 			}
 		}
 		catch (SQLException e) {

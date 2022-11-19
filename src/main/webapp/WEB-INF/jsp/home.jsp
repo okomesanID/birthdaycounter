@@ -49,7 +49,7 @@
 								<p><c:out value= "${loginUser.name}" />さん
 								<c:out value= "${loginUser.age}" />歳</p>
 								<form action="/birthdaycounter/Home" method="post">
-									<input type="text" name="text"><input type="submit" value="送信">
+									<input type="text" name="text"class="m-form-text"><input type="submit" class="t t-back" value="送信">
 								</form>
 								<p>投稿すると名前,年齢,誕生日までの残り日数が公開されます</p>
 							</c:when>
@@ -74,18 +74,27 @@
 								<c:forEach var="i" begin="0" end="${ThreadList.size()-1}" step="1">
 								<div class="thread"> 
 									<a href= "/birthdaycounter/Comment?ThreadNo=${ThreadList.get(i).getId()}">
-										<c:out value="${ThreadList.get(i).getName()}" />さん
-										<c:out value="${ThreadList.get(i).getAge()}" />歳
+										<c:choose>	
+											<c:when test="${counterbirth.get(i) == 1}">
+												<c:out value="${ThreadList.get(i).getName()}" />さん
+												<c:out value="${ThreadList.get(i).getAge()+1}" />歳
+											</c:when>
+											<c:otherwise>
+												<c:out value="${ThreadList.get(i).getName()}" />さん
+												<c:out value="${ThreadList.get(i).getAge()}" />歳
+											</c:otherwise>
+										</c:choose>
 										<c:choose>	
 										<c:when test="${counterbirth.get(i) == 365}">
-											誕生日おめでとうございます！<br>
+											誕生日おめでとうございます！
+											　(post:<c:out value="${ThreadList.get(i).getPostDate()}" />)<br><br>
 										</c:when>
 										<c:otherwise>
 											誕生日まであと<c:out value="${counterbirth.get(i)}" />日
-											　(post:<c:out value="${ThreadList.get(i).getPostDate()}" />)<br>
+											　(post:<c:out value="${ThreadList.get(i).getPostDate()}" />)<br><br>
 										</c:otherwise>
 										</c:choose>
-										<c:out value="${ThreadList.get(i).getText()}" /><br>
+										　　<c:out value="${ThreadList.get(i).getText()}" /><br>
 									</a>
 								</div>
 								</c:forEach>

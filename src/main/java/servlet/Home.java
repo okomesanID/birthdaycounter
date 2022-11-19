@@ -128,8 +128,7 @@ public class Home extends HttpServlet {
 			 List<Long> count = birth.counter();
 			 session.setAttribute("counterbirth",count);
 			 
-			 //ホーム画面にフォワード
-			 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
-			 dispatcher.forward(request,response);
+			 //リダイレクト処理（多重投稿を防ぐため）
+			  response.sendRedirect("/birthdaycounter/Home");
 	 }
 }

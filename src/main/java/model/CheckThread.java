@@ -15,7 +15,7 @@ public class CheckThread{
 		
 		 //ユーザー名被りがないかチェック
 		 for (ThreadBean emp : threadList) {
-			 if(emp.getId() == id ) {
+			 if(emp.getThread_Id() == id ) {
 			  return true;
 			  }
 		  }
