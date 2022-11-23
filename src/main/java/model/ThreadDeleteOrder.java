@@ -15,7 +15,7 @@ public class ThreadDeleteOrder{
 		ThreadDAO dao = new ThreadDAO();
 		List<Integer> List = Delete.delete();
 		
-		for (int i = 0; i < List.size()-1; i++) {
+		for (int i = 0; i < List.size(); i++) {
 			try {
 				dao.delete(List.get(i));
 			} catch (ParseException e) {
@@ -27,7 +27,6 @@ public class ThreadDeleteOrder{
 	//削除ボタンを押された時の動作
 	public void delete(int No) {
 		ThreadDAO dao = new ThreadDAO();
-		System.out.println("No="+No);
 		try {
 			dao.delete2(No);
 		} catch (ParseException e) {

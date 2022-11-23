@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.CalcAge;
 import model.CheckThread;
 import model.CounterPostLogic;
 import model.CounterThreadLogic;
@@ -32,7 +33,6 @@ public class Home extends HttpServlet {
 		 
 		 HttpSession session = request.getSession();
 		 UserBean loginUser = (UserBean) session.getAttribute("loginUser");
-		  
 		 
 		 //選択削除の処理
 		 String action = request.getParameter("action");
@@ -80,7 +80,7 @@ public class Home extends HttpServlet {
 		 
 		 //スレッドの削除処理
 		 ThreadDeleteOrder diff = new ThreadDeleteOrder();
-		 diff. execute(); 
+		 diff.execute(); 
 		 
 		 //ホーム画面にフォワード
 		 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
@@ -96,15 +96,25 @@ public class Home extends HttpServlet {
 			request.setCharacterEncoding("UTF-8"); 
 			String text = request.getParameter("text");
 			
+
+			
 			//入力値チェック
 			if(text != null && text.length()!=0) {
-				
 				//セッションスコープからユーザー情報を取得
 				HttpSession session =request.getSession();
 				UserBean loginUser = (UserBean) session.getAttribute("loginUser");
 				
+				//初期年齢の計算
+				int residue = 0;
+				CalcAge Age =  new CalcAge();
+				try {
+					residue= (int) Age.counter(loginUser.getMonth(),loginUser.getDay());
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				
 				//スレッドリストをリストに追加
-				ThreadBean mutter = new ThreadBean(loginUser.getName(),loginUser.getAge(),text);
+				ThreadBean mutter = new ThreadBean(loginUser.getName(),loginUser.getAge(),text,residue);
 				PostThreadLogic postThreadLogic = new PostThreadLogic(); 
 				postThreadLogic.execute(mutter,loginUser.getId());	
 			}

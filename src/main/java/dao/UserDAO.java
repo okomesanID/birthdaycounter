@@ -30,8 +30,8 @@ public class UserDAO {
 		          JDBC_URL, DB_USER, DB_PASS)) {
 			
 			//INSERT文の準備
-			String sql = "INSERT INTO USERLIST(NAME, PASS, BIRTHYEAR, BIRTHMONTH, BIRTHDAY, AGE, RESIDUE) "
-					+ "VALUES(?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO USERLIST(NAME, PASS, BIRTHYEAR, BIRTHMONTH, BIRTHDAY, AGE) "
+					+ "VALUES(?, ?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, user.getName());
 			pStmt.setString(2, user.getPass());
@@ -39,7 +39,7 @@ public class UserDAO {
 			pStmt.setInt(4, user.getMonth());
 			pStmt.setInt(5, user.getDay());
 			pStmt.setInt(6, user.getAge());
-			pStmt.setInt(7, user.getResidue());
+//			pStmt.setInt(7, user.getResidue());
 			
 			// INSERT文を実行(execute)
 			int result = pStmt.executeUpdate();
@@ -116,8 +116,7 @@ public class UserDAO {
 			while (rs.next()) {
 				int id = rs.getInt("ID");
 				String userName = rs.getString("NAME");
-				int residue =rs.getInt("RESIDUE");
-				UserBean user = new UserBean(id, userName, residue);
+				UserBean user = new UserBean(id, userName);
 				userList.add(user);
 			}
 		}

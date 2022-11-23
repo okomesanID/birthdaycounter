@@ -37,9 +37,7 @@ public class CalcAge {
 	 }
 	 
 	//初期日数を計算するメソッド
-	public long counter(String Month, String Day) throws ParseException {
-		int month = Integer.parseInt(Month);
-		int day = Integer.parseInt(Day);
+	public long counter(int month, int day) throws ParseException {
 		
 		//CalTodayは現在の日付、calTempは日付格納用
 		Calendar calToday = Calendar.getInstance();
@@ -58,6 +56,9 @@ public class CalcAge {
 		}
 		long diff=(dteTemp.getTime() -dteToday.getTime())/(24*60*60*1000);
 
+		if(diff==365)
+			diff=0;
+		
 		return diff;
 		}
 }

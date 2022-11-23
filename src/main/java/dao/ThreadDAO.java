@@ -55,11 +55,12 @@ public class ThreadDAO {
 				int age = rs.getInt("AGE");
 				String text = rs.getString("TEXT");
 				java.sql.Date date = rs.getDate("POSTDAY");
+				int residue = rs.getInt("THREADLIST.residue");
 				
 				String strDate = date.toString();
 				LocalDate PostDate = LocalDate.parse(strDate);
 				
-				ThreadBean user = new ThreadBean(id, thread_id, name, year,month,day,age,text, PostDate);
+				ThreadBean user = new ThreadBean(id, thread_id, name, year,month,day,age,text, PostDate,residue);
 				threadList.add(user);
 
 			}
@@ -91,13 +92,14 @@ public class ThreadDAO {
 			 java.sql.Date sqlDate=  java.sql.Date.valueOf(str);
 			 
 			//INSERT文の準備
-			String sql = "INSERT INTO THREADLIST(THREAD_ID,USER_ID,TEXT,POSTDAY)"
-					+ "VALUES(?, ?, ?, ?)";
+			String sql = "INSERT INTO THREADLIST(THREAD_ID,USER_ID,TEXT,POSTDAY,RESIDUE)"
+					+ "VALUES(?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setInt(1, id);
 			pStmt.setInt(2, id);
 			pStmt.setString(3, thread.getText());
 			pStmt.setDate(4, sqlDate);
+			pStmt.setInt(5, thread.getResidue());
 			
 			//INSERT文の実行
 			int result = pStmt.executeUpdate();
@@ -112,7 +114,7 @@ public class ThreadDAO {
 	}
 	
 	//スレッド削除用の処理
-	public boolean delete(Integer id) throws ParseException {
+	public boolean delete(int id) throws ParseException {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
@@ -123,16 +125,16 @@ public class ThreadDAO {
 			
 			//COMMENTLISTのDELETE文を準備
 			String sql = "DELETE FROM COMMENTLIST "
-					+ "WHERE THREAD_ID = '?'";	
+					+ "WHERE THREAD_ID = ?";	
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setInt(1, id);
 			
 			//THREADLISTのDELETE文を準備
 			String sql1 = "DELETE FROM THREADLIST "
-					+ "WHERE THREAD_ID = '?'";	
+					+ "WHERE ID = ?";	
 			PreparedStatement pStmt1 = conn.prepareStatement(sql1);
 			pStmt1.setInt(1, id);
-			
+			System.out.println("No="+id);
 			//COMMENTLISTのDELETE文の実行
 			int result = pStmt.executeUpdate();
 			if(result !=1) {

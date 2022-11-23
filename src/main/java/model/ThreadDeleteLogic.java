@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.ThreadDAO;
-import dao.UserDAO;
 
 public class ThreadDeleteLogic {
 	
@@ -33,10 +32,10 @@ public class ThreadDeleteLogic {
 	public List<Long>  residueDay() {
 		
 		List<Long> residueList = new ArrayList<Long>();
-		UserDAO dao = new UserDAO();
-		List<UserBean> UserList =dao.findAll();
+		ThreadDAO dao = new ThreadDAO();
+		List<ThreadBean> threadList =dao.findAll();
 		//1スレッドずつ経過日数を計算
-		for (UserBean emp : UserList) {
+		for (ThreadBean emp : threadList) {
 			int residueday =emp.getResidue();
 			residueList.add((long)residueday);
 		  }

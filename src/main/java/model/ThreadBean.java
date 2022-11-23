@@ -14,6 +14,7 @@ public class ThreadBean implements Serializable {
 	private int age; 
 	private String text;
 	private LocalDate PostDate; 
+	private int residue;
 	
 	//スレッドリスト取得用
 	public ThreadBean(String name,int age, String text,LocalDate PostDate) { 
@@ -24,14 +25,15 @@ public class ThreadBean implements Serializable {
 	}
 	
 	//スレッド投稿処理(Home.java)
-	public ThreadBean(String name,int age, String text) { 
+	public ThreadBean(String name,int age, String text, int residue) { 
 		this.name = name; 
 		this.age = age; 
 		this.text=text;
+		this.residue = residue;
 	}
 	
 	//DAO用
-	public ThreadBean(int id, int thread_id, String name,int year, int month, int day, int age, String text, LocalDate PostDate) { 
+	public ThreadBean(int id, int thread_id, String name,int year, int month, int day, int age, String text, LocalDate PostDate, int residue) { 
 		this.id = id;
 		this.thread_id = thread_id;
 		this.name = name; 
@@ -41,6 +43,7 @@ public class ThreadBean implements Serializable {
 		this.age = age; 
 		this.text=text;
 		this. PostDate= PostDate;
+		this.residue = residue;
 	}
 	
 	public int getId() {return id;} 
@@ -52,4 +55,5 @@ public class ThreadBean implements Serializable {
 	public int getAge() {return age;} 
 	public String getText() {return text;} 
 	public  LocalDate getPostDate() {return PostDate;} 
+	public int getResidue() {return residue;} 
 }

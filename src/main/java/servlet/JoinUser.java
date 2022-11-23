@@ -45,7 +45,7 @@ public class JoinUser extends HttpServlet {
 			  else {
 				  // 登録処理の呼び出し
 				  UserBean user = new UserBean(registerUser.getName(),registerUser.getPass(),
-						  registerUser.getYear(),registerUser.getMonth(),registerUser.getDay(),registerUser.getAge(),registerUser.getResidue());
+						  registerUser.getYear(),registerUser.getMonth(),registerUser.getDay(),registerUser.getAge());
 				  JoinUserLogic logic = new JoinUserLogic();
 				  logic.execute(user);
 			
@@ -76,10 +76,6 @@ public class JoinUser extends HttpServlet {
 		  String month =request.getParameter("month");
 		  String day = request.getParameter("day");
 		  
-		  //年齢取得用の変数
-		  int age = 0;
-		  int residue = 0;
-		  
 		  //入力の確認
 		  if( name == null ||  name.length()== 0) {	
 			  request.setAttribute("NameerrorMsg", "名前が入力されていません");
@@ -94,14 +90,14 @@ public class JoinUser extends HttpServlet {
 			  request.setAttribute("SasserrorMsg", "パスワードが違います");
 		  }
 		  
-		  //年齢の取得
+		  //年齢の計算
+		  int age = 0;
 		  CalcAge Age =  new CalcAge();
 		  try {
-			  age= Age.calcage(year,month,day);
-			  residue= (int) Age.counter(month,day);
+			age= Age.calcage(year,month,day);
 		  } catch (ParseException e) {
 			  e.printStackTrace();
-		  }
+		  }	
 			
 		  //ユーザー名被りがないかチェック
 		  CheckUser checkuser =new CheckUser();
@@ -113,7 +109,7 @@ public class JoinUser extends HttpServlet {
 		  }
 		  else {
 			  // 登録するユーザーの情報を設定
-			  UserBean user =new UserBean(name,pass,checkpass,year,month,day,age, residue);
+			  UserBean user =new UserBean(name,pass,checkpass,year,month,day,age);
 			  
 			  //ユーザー登録確認処理
 			  JoinConfirmLogic ConfirmLogic = new JoinConfirmLogic(); 
