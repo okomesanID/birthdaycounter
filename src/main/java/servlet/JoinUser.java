@@ -135,6 +135,7 @@ public class JoinUser extends HttpServlet {
 					e.printStackTrace();
 				}
 				 
+				 
 				//ユーザー登録確認画面にフォワード
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/joinConfirm.jsp"); 
 				dispatcher.forward(request, response); 

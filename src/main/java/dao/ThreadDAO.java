@@ -136,6 +136,10 @@ public class ThreadDAO {
 			//COMMENTLISTのDELETE文の実行
 			int result = pStmt.executeUpdate();
 			if(result !=1) {
+				int result2 = pStmt1.executeUpdate();
+				if(result2 !=1) {
+					return false;
+				}
 				return false;
 			}
 			//THREADLISTのDELETE文の実行
@@ -151,4 +155,48 @@ public class ThreadDAO {
 		return true;
 	}
 	
+	//スレッド削除用の処理
+	public boolean delete2(int id) throws ParseException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		try(Connection conn = DriverManager.getConnection(
+		          JDBC_URL, DB_USER, DB_PASS)) {
+			
+			//COMMENTLISTのDELETE文を準備
+			String sql = "DELETE FROM COMMENTLIST "
+					+ "WHERE THREAD_ID = ?";	
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setInt(1, id);
+			
+			//THREADLISTのDELETE文を準備
+			String sql1 = "DELETE FROM THREADLIST "
+					+ "WHERE ID = ?";	
+			PreparedStatement pStmt1 = conn.prepareStatement(sql1);
+			pStmt1.setInt(1, id);
+			
+			//COMMENTLISTのDELETE文の実行
+			int result = pStmt.executeUpdate();
+			if(result !=1) {
+				int result2 = pStmt1.executeUpdate();
+				if(result2 !=1) {
+					return false;
+				}
+				return false;
+			}
+			
+			//THREADLISTのDELETE文の実行
+			int result1 = pStmt1.executeUpdate();
+			if(result1 !=1) {
+				return false;
+			}
+				
+		}catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+			}	
+		return true;
+	}
 }

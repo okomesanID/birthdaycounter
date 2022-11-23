@@ -7,13 +7,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-
 <!-- HTML開始 -->
 <!DOCTYPE html>
 <html>	
 	<jsp:include page="/head.jsp" />
 	<body>
-	
+		<!-- hanberger -->
+		<!--<div class=hum>
+			<span></span>
+			<span></span>
+			<span></span>
+			<ul class="slide-menu">
+				<li><a href="Login">ログイン</a></li>
+				<li><a href="Join">新規登録</a></li>
+			</ul>
+		</div>-->
+			
 		<!-- header -->
 		<section id="header">
 			<jsp:include page="/header.jsp" />
@@ -87,11 +96,13 @@
 										<c:choose>	
 										<c:when test="${counterbirth.get(i) == 365}">
 											誕生日おめでとうございます！
-											　(post:<c:out value="${ThreadList.get(i).getPostDate()}" />)<br><br>
+											　(post:<c:out value="${ThreadList.get(i).getPostDate()}" />)
+											<br><br>
 										</c:when>
 										<c:otherwise>
 											誕生日まであと<c:out value="${counterbirth.get(i)}" />日
-											　(post:<c:out value="${ThreadList.get(i).getPostDate()}" />)<br><br>
+											　(post:<c:out value="${ThreadList.get(i).getPostDate()}" />)
+											<br><br>
 										</c:otherwise>
 										</c:choose>
 										　　<c:out value="${ThreadList.get(i).getText()}" /><br>
@@ -105,5 +116,6 @@
 				
 			</div>
 		</div>
+		<script src="js/main.js"></script>
 	</body>
 </html>

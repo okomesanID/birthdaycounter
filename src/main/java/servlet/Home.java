@@ -32,7 +32,19 @@ public class Home extends HttpServlet {
 		 
 		 HttpSession session = request.getSession();
 		 UserBean loginUser = (UserBean) session.getAttribute("loginUser");
-		
+		  
+		 
+		 //選択削除の処理
+		 String action = request.getParameter("action");
+		 String threadNo = request.getParameter("thread");
+		  if (action != null) {
+			ThreadDeleteOrder delete = new ThreadDeleteOrder();
+			if (threadNo != null) {
+				int ThreadNo = Integer.parseInt(threadNo);
+				delete. delete(ThreadNo); 
+			}
+		  }
+		  
 		 //ログインのチェック処理
 		 if(loginUser == null) {    
 			 session.setAttribute("logincheck",0);
@@ -55,7 +67,7 @@ public class Home extends HttpServlet {
 				}
 			}
 		 }
-		 
+		  
 		  //スレッドリストを取得してリクエストスコープに保存
 		 GetThreadListLogic getListLogic = new  GetThreadListLogic();
 		 List<ThreadBean> ThreadList = getListLogic.execute();
@@ -73,6 +85,7 @@ public class Home extends HttpServlet {
 		 //ホーム画面にフォワード
 		 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
 		 dispatcher.forward(request,response);
+		 
 	 }
 	 
 	 protected void doPost(HttpServletRequest request,

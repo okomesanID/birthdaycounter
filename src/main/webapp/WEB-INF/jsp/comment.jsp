@@ -16,11 +16,15 @@
 		<!-- header -->
 		<section id="header">
 			<jsp:include page="/header.jsp" />
-				<nav id="nav">
-					<ul class="gnav-list">
-						<li class="gnav-item"><a href="Logout">ログアウト</a></li>
-					</ul>
-				</nav>
+			<c:choose>	
+				<c:when test ="${logincheck == 1}">
+					<nav id="nav">
+						<ul class="gnav-list">
+							<li class="gnav-item"><a href="Logout">ログアウト</a></li>
+						</ul>
+					</nav>
+				</c:when>
+			</c:choose>
 		</section>
 		
 		<div id="wrapper">
@@ -28,19 +32,19 @@
 				<!-- スレッドタイトル -->
 				<div class="ThreadTitle"> 
 					<strong>
-						<c:out value="${ThreadList.get(ThreadID-1).getName()}" />さん
-						<c:out value="${ThreadList.get(ThreadID-1).getAge()}" />歳
+						<c:out value="${ThreadList.get(ThreadID).getName()}" />さん
+						<c:out value="${ThreadList.get(ThreadID).getAge()}" />歳
 						<c:choose>	
-							<c:when test="${counterbirth.get(ThreadID-1) == 365}">
+							<c:when test="${counterbirth.get(ThreadID) == 365}">
 								本日が誕生日です！！<br>
 							</c:when>
 							<c:otherwise>
-								誕生日まであと<c:out value="${counterbirth.get(ThreadID-1)}" />日
-								　(post:<c:out value="${ThreadList.get(ThreadID-1).getPostDate()}" />)<br><br>
+								誕生日まであと<c:out value="${counterbirth.get(ThreadID)}" />日
+								　(post:<c:out value="${ThreadList.get(ThreadID).getPostDate()}" />)<br><br>
 							</c:otherwise>
 						</c:choose>
 					</strong>
-					<p>コメント：<c:out value="${ThreadList.get(ThreadID-1).getText()}" /><p>	
+					<p>コメント：<c:out value="${ThreadList.get(ThreadID).getText()}" /><p>	
 				</div>
 					
 				<!-- コメントリスト -->
@@ -73,10 +77,19 @@
 							<p>ログインするとコメントできます</p>
 						</c:when>
 						<c:when test ="${logincheck == 1}">
-							<form action="/birthdaycounter/Comment?ThreadNo=${ThreadID}" method="post">
+							<form action="/birthdaycounter/Comment?ThreadNo=${ThreaNO}" method="post">
 								<input type="text" name="comment"class="m-form-text">
 								<input type="submit"class="t t-back" value="送信">
 							</form>
+						</c:when>
+					</c:choose>
+				</div>
+				
+				<!-- 削除ボタン -->
+				<div class="deleate">
+					<c:choose>
+						<c:when test="${ThreadList.get(ThreadID).getThread_Id() == loginUser.id}">
+							<a href= "/birthdaycounter/Home?action=delete&thread=${ThreaNO}">スレッド削除</a>
 						</c:when>
 					</c:choose>
 				</div>

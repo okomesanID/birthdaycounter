@@ -22,6 +22,8 @@
 
 	body {
 		line-height: 1;
+		-webkit-text-size-adjust: none;
+		overflow-x: hidden;/* 追記 */
 	}
 	ol, ul {
 		list-style: none;
@@ -34,10 +36,6 @@
 	blockquote:before, blockquote:after, q:before, q:after {
 		content: '';
 		content: none;
-	}
-
-	body {
-		-webkit-text-size-adjust: none;
 	}
 	
 	a {
@@ -110,7 +108,12 @@
 		flex-grow: 1;
 		font-size:18px;
 	}
-
+	.hum{
+		display:none;
+	}
+	.slide-menu{
+		display:none;
+	}
 /*----------------------------
 グローバルリンク
 ----------------------------*/
@@ -384,8 +387,8 @@
 		text-align: center;
 	}
 	
-/*----------------------------
-ログイン画面
+/*----------------------------\
+コメント画面
 ----------------------------*/
 
 	.comment-container {
@@ -424,5 +427,103 @@
 		margin: 0 auto;
 		text-align: center;
 	}
-	
+	.deleate {
+		width: 100%;
+		margin: 10px auto;
+		text-align: center;
+	}
+	.deleate a {
+		color: red;
+	}
+/*----------------------------
+スマホ用
+----------------------------*/	
+	@media screen and (max-width: 480px) {
+		#header{
+			display:none;
+		}
+		.hum{
+			display:block;
+			width:80px;
+			height:60px;
+			background: #2BC49A;
+			margin-left: auto;
+		}
+		.hum span{
+			position: absolute;
+			width: 15%;
+			height: 2px;
+			background-color: #FFFFFF;;
+			margin: 0em 0.75em;
+
+		}
+		.hum span:first-of-type{/* ハンバーガーメニューの1番目の線 */
+			top: 10px;
+		}
+		.hum span:nth-of-type(2){/* ハンバーガーメニューの2番目の線 */
+			top: 30px;
+		}
+		.hum span:last-of-type{/* ハンバーガーメニューの3番目の線 */
+			top: 50px;
+		}
+		#wrapper {
+		    background: #fff;
+		    padding-right: 0em;
+		}
+		.thread {
+		    display: flex;
+		    flex-direction: column;
+		    justify-content: center;
+		    background: #f6f6f6;
+		    box-shadow: 0 0 0 2px #ccc inset;
+		    width: 350px; 
+		    padding: 1em;
+		    margin: 10px;
+		}
+		.ThreadTitle {
+			display: flex;
+			justify-content: center;
+			flex-direction:column;
+			background: #f6f6f6;
+			box-shadow: 0 0 0 2px #ccc inset;
+			padding: 1.5em;
+			width: 310px;
+			margin: 2em auto;/*上下左右中央*/
+			text-align: center;
+		}
+		.CommentList {
+			display: flex;
+			justify-content: center;
+			flex-direction:column;
+			background: #f6f6f6;
+			box-shadow: 0 0 0 2px #ccc inset;
+			width:310px;
+			padding: 1.5em;
+			margin: 0.5em auto;/*上下左右中央*/
+		}
+		.form{
+			display: flex;
+			flex-direction:column;
+			justify-content: center;
+			background: #f6f6f6;
+			box-shadow: 0 0 0 2px #ccc inset;
+			width: 45em;
+			padding: 1em;
+			margin-top: 10%;
+		}
+		.slide-menu{
+			display:none;
+			background-color: rgba(0, 0, 0, .8);
+			position: fixed;
+			top: 65px;
+			width: 100%;
+			left: 0;
+			transform: translateX(100%); /* 追記 */
+		}
+		.slide-menu li{
+			 color: #fff;
+			 line-height: 400%;
+			 text-align: center;
+		}
+	}	
 	

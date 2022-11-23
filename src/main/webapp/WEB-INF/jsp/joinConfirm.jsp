@@ -36,14 +36,7 @@
 										 <c:out value= "${joinUser.day}" />日</p>
 						</div>
 						<div class="text">
-						<c:choose>	
-							<c:when test="${counterbirth.get(i) == 1}">
-								<p>年齢：<c:out value= "${joinUser.age+1}" />歳</p>
-							</c:when>
-							<c:otherwise>
-								<p>年齢：<c:out value= "${joinUser.age}" />歳</p>
-							</c:otherwise>
-						</c:choose>
+							<p>年齢：<c:out value= "${joinUser.age}" />歳</p>
 						</div>
 						
 						<div class="submit">

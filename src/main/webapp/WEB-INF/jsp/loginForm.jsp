@@ -12,6 +12,10 @@
 	<jsp:include page="/head.jsp" />
 	<body>
 		<!-- header -->
+		<div class=hum>
+			
+		</div>
+		
 		<section id="header">
 			<jsp:include page="/header.jsp" />
 			<nav id="nav">

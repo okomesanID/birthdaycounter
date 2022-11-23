@@ -35,9 +35,18 @@ public class Comment extends HttpServlet {
 		 
 		 //スレッドのIDを格納
 		 String threadNo = request.getParameter("ThreadNo");
-		 int ThreadNo = Integer.parseInt(threadNo);
+		 int ThreadNo = Integer.parseInt(threadNo);			 
 		 HttpSession session = request.getSession();
-		 session.setAttribute("ThreadID",ThreadNo);
+		 session.setAttribute("ThreaNO",ThreadNo);
+		 
+		 //スレッドのIDの抽出
+		 int[] num;
+		 num = new int[ThreadList.size()];
+		 for(int i=0; i< ThreadList.size() ;i++) {
+			num[i] = ThreadList.get(i).getId();
+			if(num[i] == ThreadNo)
+			session.setAttribute("ThreadID",i);
+		 }
 		 
 		 //ログインのチェック処理
 		 UserBean loginUser = (UserBean) session.getAttribute("loginUser");
@@ -63,12 +72,12 @@ public class Comment extends HttpServlet {
 		      HttpServletResponse response)
 		      throws ServletException, IOException {	 
 		 
-		 //リクエストパラメーターの取得
-		 request.setCharacterEncoding("UTF-8"); 
-		 String comment = request.getParameter("comment");
+		//リクエストパラメーターの取得
+		request.setCharacterEncoding("UTF-8"); 
+		String comment = request.getParameter("comment");
 		//スレッドの情報,ユーザー情報を取得
 		HttpSession session =request.getSession();
-		int ThreadNo =Integer.parseInt( request.getParameter("ThreadNo"));
+		int ThreadNo =Integer.parseInt(request.getParameter("ThreadNo"));
 		UserBean loginUser = (UserBean) session.getAttribute("loginUser");
 		
 		//入力値チェック
@@ -78,8 +87,8 @@ public class Comment extends HttpServlet {
 			GetThreadListLogic getListLogic = new  GetThreadListLogic();
 			List<ThreadBean> ThreadList = getListLogic.execute();
 			request.setAttribute("ThreadList", ThreadList);
-			session.setAttribute("ThreadID",ThreadNo);
-			 
+			session.setAttribute("ThreaNO",ThreadNo);
+			
 			//スレッドリストをリストに追加
 			CommentBean Comeinfo = new CommentBean(ThreadNo,loginUser.getId(),comment);
 			PostCommentLogic postCommentLogic = new PostCommentLogic(); 

@@ -12,11 +12,15 @@
 	<jsp:include page="/head.jsp" />
 	<body>
 		<!-- header -->
+		<div class=hum>
+			
+		</div>
+		
 		<section id="header">
 			<jsp:include page="/header.jsp" />
 			<nav id="nav">
 				<ul class="gnav-list">
-					<li class="gnav-item"><a href="Join">新規登録</a></li>
+					<li class="gnav-item"><a href="Login">ログイン</a></li>
 				</ul>
 			</nav>
 		</section>
