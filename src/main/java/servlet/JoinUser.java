@@ -28,10 +28,13 @@ public class JoinUser extends HttpServlet {
 		 
 		  String forwardPath = null;
 		  String action = request.getParameter("action");
-		  
+
 		  // フォワード先の設定
 		  if (action == null) {
 		  	forwardPath = "/WEB-INF/jsp/joinForm.jsp";
+			 // 不要となったセッションスコープ内のインスタンスを削除
+		  	HttpSession session = request.getSession();
+			 session.removeAttribute("recname");
 		  }
 		  else if (action.equals("done")) {
 			  // セッションスコープに保存された登録ユーザを呼び出し
@@ -51,6 +54,7 @@ public class JoinUser extends HttpServlet {
 			
 				  // 不要となったセッションスコープ内のインスタンスを削除
 				  session.removeAttribute("joinUser");
+				  session.removeAttribute("joinRecname");
 			
 				  // 登録後のフォワード先を設定
 				  forwardPath = "/WEB-INF/jsp/joinDone.jsp";
@@ -125,8 +129,8 @@ public class JoinUser extends HttpServlet {
 				//再投稿可能までの日数をチェック
 				CounterPostLogic thread = new CounterPostLogic();
 				 try {
-					long count = thread.counter(user.getMonth(),user.getDay());
-					session.setAttribute("CounterThread",count);
+					 long count = thread.counter(user.getMonth(),user.getDay());
+					 session.setAttribute("CounterThread",count);
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
@@ -137,8 +141,14 @@ public class JoinUser extends HttpServlet {
 				dispatcher.forward(request, response); 
 			  }
 			  else {
+				  HttpSession session =request.getSession();
+				  session.setAttribute("joinRecname",name);
+				  session.setAttribute("RecYear",year);
+				  session.setAttribute("RecMonth",month);
+				  session.setAttribute("RecDay",day);
 				  RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/joinForm.jsp"); 
 				  dispatcher.forward(request, response);
+				  
 			  }
 		 }
 	 }

@@ -34,6 +34,10 @@ public class Home extends HttpServlet {
 		 HttpSession session = request.getSession();
 		 UserBean loginUser = (UserBean) session.getAttribute("loginUser");
 		 
+		 // 不要となったセッションスコープ内のインスタンスを削除
+		 session.removeAttribute("recname");
+		 session.removeAttribute("joinRecname");
+		 
 		 //選択削除の処理
 		 String action = request.getParameter("action");
 		 String threadNo = request.getParameter("thread");

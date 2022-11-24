@@ -38,7 +38,7 @@
 							<!-- nameテキストボックス -->
 							<div class="name">
 								<p>ユーザー名</p>
-								<input type="text" name="name"class="m-form-text"><br>
+								<input type="text" name="name"class="m-form-text" value= "${recname}" /><br>
 								<c:if test="${not empty NameerrorMsg}">	
 									<div class="error"> <p>${NameerrorMsg}</p> </div>
 								</c:if>

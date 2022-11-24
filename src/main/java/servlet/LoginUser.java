@@ -34,6 +34,9 @@ public class LoginUser extends HttpServlet {
 			HttpSession session = request.getSession();
 			UserBean loginUser = (UserBean) session.getAttribute("loginUser");
 			if(loginUser != null) {
+				// 不要となったセッションスコープ内のインスタンスを削除
+				session.removeAttribute("recname");
+				session.removeAttribute("joinRecname");
 				forwardPath = "/birthdaycounter/Home";
 			}
 			
@@ -75,6 +78,9 @@ public class LoginUser extends HttpServlet {
 				  response.sendRedirect("/birthdaycounter/Home");
 			  }
 			  else {
+				  HttpSession session =request.getSession();
+				  session.setAttribute("recname",name);
+				  
 				 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/loginForm.jsp");
 					 dispatcher.forward(request, response);
 			  }
