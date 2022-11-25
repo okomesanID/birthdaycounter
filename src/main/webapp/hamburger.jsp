@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 	
 	<div class=respons>
+	<img src="img/icon.png" alt="アイコン">
 	<a href="/birthdaycounter/Home">BirthdayCounter</a>
 		<!-- hanberger -->
 		<div class=hamburger>

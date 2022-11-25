@@ -141,6 +141,9 @@
 	.respons a{
 		display:none;
 	}
+	.respons img{
+		display:none;
+	}
 /*----------------------------
 グローバルリンク
 ----------------------------*/
@@ -468,7 +471,7 @@
 	@media screen and (max-width: 480px) {
 		#header{
 			display:none;
-		}
+		}	
 		.respons{
 			width:100%;
 			background-color: #333333;
@@ -478,8 +481,16 @@
 			display:block;
 			color: #FFFF;
 			margin: auto;
+			margin-left: 10px;
 			font-weight: bold;
 			font-size: x-large;
+		}
+		.respons img{
+			display:block;
+			height: 30px;
+			margin-top: 8px;
+			margin-bottom: 8px;
+			margin-left: 50px;
 		}
 		.hamburger{
 			display:block;
