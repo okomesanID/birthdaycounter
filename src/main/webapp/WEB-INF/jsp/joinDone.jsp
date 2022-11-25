@@ -11,6 +11,8 @@
 <html>	
 	<jsp:include page="/head.jsp" />
 	<body>
+		<!-- hamburger-->
+		<jsp:include page="/hamburger.jsp" />
 		<!-- header -->
 		<section id="header">
 			<jsp:include page="/header.jsp" />

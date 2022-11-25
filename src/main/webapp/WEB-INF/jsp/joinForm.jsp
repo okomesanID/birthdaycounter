@@ -11,11 +11,9 @@
 <html>	
 	<jsp:include page="/head.jsp" />
 	<body>
+		<!-- hamburger-->
+		<jsp:include page="/hamburger.jsp" />
 		<!-- header -->
-		<div class=hum>
-			
-		</div>
-		
 		<section id="header">
 			<jsp:include page="/header.jsp" />
 			<nav id="nav">

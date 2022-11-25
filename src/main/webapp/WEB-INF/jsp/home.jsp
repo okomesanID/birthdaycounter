@@ -12,17 +12,8 @@
 <html>	
 	<jsp:include page="/head.jsp" />
 	<body>
-		<!-- hanberger -->
-		<!--<div class=hum>
-			<span></span>
-			<span></span>
-			<span></span>
-			<ul class="slide-menu">
-				<li><a href="Login">ログイン</a></li>
-				<li><a href="Join">新規登録</a></li>
-			</ul>
-		</div>-->
-			
+		<!-- hamburger-->
+		<jsp:include page="/hamburger.jsp" />
 		<!-- header -->
 		<section id="header">
 			<jsp:include page="/header.jsp" />
@@ -116,6 +107,5 @@
 				
 			</div>
 		</div>
-		<script src="js/main.js"></script>
 	</body>
 </html>

@@ -11,6 +11,8 @@
 <html>	
 	<jsp:include page="/head.jsp" />
 	<body>
+		<!-- hamburger-->
+		<jsp:include page="/hamburger.jsp" />
 		<!-- header -->
 		<div class=hum>
 			
