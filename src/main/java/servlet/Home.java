@@ -48,7 +48,10 @@ public class Home extends HttpServlet {
 				delete. delete(ThreadNo); 
 			}
 		  }
-		  
+		 //スレッドの削除処理
+		 ThreadDeleteOrder diff = new ThreadDeleteOrder();
+		 diff.execute();
+		 
 		 //ログインのチェック処理
 		 if(loginUser == null) {    
 			 session.setAttribute("logincheck",0);
@@ -82,9 +85,6 @@ public class Home extends HttpServlet {
 		 List<Long> count = birth.counter();
 		 session.setAttribute("counterbirth",count);
 		 
-		 //スレッドの削除処理
-		 ThreadDeleteOrder diff = new ThreadDeleteOrder();
-		 diff.execute(); 
 		 
 		 //ホーム画面にフォワード
 		 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");

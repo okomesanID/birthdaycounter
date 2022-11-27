@@ -56,7 +56,9 @@
 							<c:otherwise>
 								<p><c:out value= "${loginUser.name}" />さん
 								<c:out value= "${loginUser.age}" />歳</p>
-								<p>投稿済みです（再投稿可能まで残り${CounterThread}日）<p>
+								<a href= "/birthdaycounter/Comment?ThreadNo=${loginUser.id}">
+									投稿済みです（再投稿可能まで残り${CounterThread}日)
+								</a>
 							</c:otherwise>
 						</c:choose>
 					</div>

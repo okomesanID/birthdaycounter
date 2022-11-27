@@ -18,15 +18,23 @@
 		<!-- header -->
 		<section id="header">
 			<jsp:include page="/header.jsp" />
-			<c:choose>	
-				<c:when test ="${logincheck == 1}">
-					<nav id="nav">
+			<nav id="nav">
+				<c:choose>	
+					<c:when test ="${logincheck == 0}">
 						<ul class="gnav-list">
-							<li class="gnav-item"><a href="Logout">ログアウト</a></li>
+							<li class="gnav-item"><a href="Login">ログイン</a></li>
+							<li class="gnav-item"><a href="Join">新規登録</a></li>
 						</ul>
-					</nav>
-				</c:when>
-			</c:choose>
+					</c:when>
+					<c:otherwise>
+						<nav id="nav">
+							<ul class="gnav-list">
+								<li class="gnav-item"><a href="Logout">ログアウト</a></li>
+							</ul>
+						</nav>
+					</c:otherwise>
+				</c:choose>
+			</nav>
 		</section>
 		
 		<div id="wrapper">
