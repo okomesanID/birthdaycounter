@@ -17,17 +17,23 @@ import model.CounterThreadLogic;
 
 public class CommentDAO {
 	
+//	// データベースに接続
+//	private final String JDBC_URL =
+//	"jdbc:mysql://localhost/birthdaycounter?useSSL=false";
+//	private final String DB_USER = "root";
+//	private final String DB_PASS = "@municom";
+	
 	// データベースに接続
-	private final String JDBC_URL =
-	"jdbc:mysql://localhost/birthdaycounter?useSSL=false";
-	private final String DB_USER = "root";
-	private final String DB_PASS = "@municom";
+	private final String JDBC_URL =System.getenv("JDBC_URL");
+	private final String DB_USER = System.getenv("DB_USER");
+	private final String DB_PASS =System.getenv("DB_PASS");
 	
 	//スレッドリスト読込用の処理
 	List<CommentBean> CommentList = new ArrayList<CommentBean>();
 	public List<CommentBean> findAll(int thread_id) {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+//			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
 			e1.printStackTrace();
 		}

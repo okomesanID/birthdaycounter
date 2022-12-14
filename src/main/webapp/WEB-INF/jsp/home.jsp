@@ -43,7 +43,9 @@
 					<div class=user-nav>
 						<c:choose>	
 							<c:when test ="${logincheck == 0}">
-								<p>ログインしてください</p>
+								<a href= "/birthdaycounter/Login">
+								ログインしてください
+								</a>
 							</c:when>
 							<c:when test ="${logincheck == 1}">
 								<p><c:out value= "${loginUser.name}" />さん

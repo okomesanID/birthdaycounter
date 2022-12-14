@@ -12,16 +12,22 @@ import model.UserBean;
 
 public class UserDAO {
 	
+//	// データベースに接続
+//	private final String JDBC_URL =
+//	"jdbc:mysql://localhost/birthdaycounter?useSSL=false";
+//	private final String DB_USER = "root";
+//	private final String DB_PASS = "@municom";
+	
 	// データベースに接続
-	private final String JDBC_URL =
-	"jdbc:mysql://localhost/birthdaycounter?useSSL=false";
-	private final String DB_USER = "root";
-	private final String DB_PASS = "@municom";
+	private final String JDBC_URL =System.getenv("JDBC_URL");
+	private final String DB_USER = System.getenv("DB_USER");
+	private final String DB_PASS =System.getenv("DB_PASS");
 	
 	//新規登録用の処理
 	public boolean UserList(UserBean user) {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+//			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
 			// TODO 自動生成された catch ブロック
 			e1.printStackTrace();
