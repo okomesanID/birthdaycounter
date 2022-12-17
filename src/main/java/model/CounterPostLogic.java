@@ -32,6 +32,6 @@ public class CounterPostLogic {
 			 diff = 0;
 		 }
 		 
-		 return diff+1;
+		 return diff;
 	 }
 }

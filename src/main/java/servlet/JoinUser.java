@@ -102,7 +102,7 @@ public class JoinUser extends HttpServlet {
 		  } catch (ParseException e) {
 			  e.printStackTrace();
 		  }	
-			
+		  
 		  //ユーザー名被りがないかチェック
 		  CheckUser checkuser =new CheckUser();
 		  boolean check = checkuser.check(name);
@@ -112,33 +112,40 @@ public class JoinUser extends HttpServlet {
 			  dispatcher.forward(request, response);
 		  }
 		  else {
-			  // 登録するユーザーの情報を設定
-			  UserBean user =new UserBean(name,pass,checkpass,year,month,day,age);
 			  
-			  //ユーザー登録確認処理
-			  JoinConfirmLogic ConfirmLogic = new JoinConfirmLogic(); 
-			  boolean isLogin = ConfirmLogic.execute(user);
-			
-			  //入力成功時の処理
-			  if(isLogin) {
+			  //不正な年齢が入力されたときの処理
+			  if(age < 0) {
+				  request.setAttribute("usercheck2", "まだ産まれていません");
+				  RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/joinForm.jsp"); 
+				  dispatcher.forward(request, response);
+			  }
+			  else {
+				  // 登録するユーザーの情報を設定
+				  UserBean user =new UserBean(name,pass,checkpass,year,month,day,age);
 				  
-				//ユーザー情報をセッションスコープに保存
-				HttpSession session =request.getSession();
-				session.setAttribute("joinUser",user);
+				  //ユーザー登録確認処理
+				  JoinConfirmLogic ConfirmLogic = new JoinConfirmLogic(); 
+				  boolean isLogin = ConfirmLogic.execute(user);
 				
-				//再投稿可能までの日数をチェック
-				CounterPostLogic thread = new CounterPostLogic();
-				 try {
-					 long count = thread.counter(user.getMonth(),user.getDay());
-					 session.setAttribute("CounterThread",count);
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-				 
-				 
-				//ユーザー登録確認画面にフォワード
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/joinConfirm.jsp"); 
-				dispatcher.forward(request, response); 
+				  //入力成功時の処理
+				  if(isLogin) {
+					  
+					//ユーザー情報をセッションスコープに保存
+					HttpSession session =request.getSession();
+					session.setAttribute("joinUser",user);
+					
+					//再投稿可能までの日数をチェック
+					CounterPostLogic thread = new CounterPostLogic();
+					 try {
+						 long count = thread.counter(user.getMonth(),user.getDay());
+						 session.setAttribute("CounterThread",count);
+					 } catch (ParseException e) {
+						e.printStackTrace();
+					 }
+					 
+					//ユーザー登録確認画面にフォワード
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/joinConfirm.jsp"); 
+					dispatcher.forward(request, response); 
 			  }
 			  else {
 				  HttpSession session =request.getSession();
@@ -149,6 +156,7 @@ public class JoinUser extends HttpServlet {
 				  RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/joinForm.jsp"); 
 				  dispatcher.forward(request, response);
 				  
+			  }
 			  }
 		 }
 	 }

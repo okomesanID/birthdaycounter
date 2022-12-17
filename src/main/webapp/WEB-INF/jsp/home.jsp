@@ -24,10 +24,16 @@
 							<li class="gnav-item"><a href="Login">ログイン</a></li>
 							<li class="gnav-item"><a href="Join">新規登録</a></li>
 						</ul>
+						<ul class="gnav-list">
+							<li class="gnav-item"><a href="Checker">生まれ年チェッカー</a></li>
+						</ul>
 					</c:when>
 					<c:otherwise>
 						<ul class="gnav-list">
 							<li class="gnav-item"><a href="Logout">ログアウト</a></li>
+						</ul>
+						<ul class="gnav-list">
+							<li class="gnav-item"><a href="Checker">生まれ年チェッカー</a></li>
 						</ul>
 					</c:otherwise>
 				</c:choose>
@@ -80,11 +86,11 @@
 									<a href= "/birthdaycounter/Comment?ThreadNo=${ThreadList.get(i).getId()}">
 										<c:choose>	
 											<c:when test="${counterbirth.get(i) == 1}">
-												<c:out value="${ThreadList.get(i).getName()}" />さん
+												<c:out value="${ThreadList.get(i).getName()}" />
 												<c:out value="${ThreadList.get(i).getAge()+1}" />歳
 											</c:when>
 											<c:otherwise>
-												<c:out value="${ThreadList.get(i).getName()}" />さん
+												<c:out value="${ThreadList.get(i).getName()}" />
 												<c:out value="${ThreadList.get(i).getAge()}" />歳
 											</c:otherwise>
 										</c:choose>

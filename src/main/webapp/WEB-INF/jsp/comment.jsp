@@ -25,11 +25,17 @@
 							<li class="gnav-item"><a href="Login">ログイン</a></li>
 							<li class="gnav-item"><a href="Join">新規登録</a></li>
 						</ul>
+						<ul class="gnav-list">
+							<li class="gnav-item"><a href="Checker">生まれ年チェッカー</a></li>
+						</ul>
 					</c:when>
 					<c:otherwise>
 						<nav id="nav">
 							<ul class="gnav-list">
 								<li class="gnav-item"><a href="Logout">ログアウト</a></li>
+							</ul>
+							<ul class="gnav-list">
+								<li class="gnav-item"><a href="Checker">生まれ年チェッカー</a></li>
 							</ul>
 						</nav>
 					</c:otherwise>
@@ -42,7 +48,7 @@
 				<!-- スレッドタイトル -->
 				<div class="ThreadTitle"> 
 					<strong>
-						<c:out value="${ThreadList.get(ThreadID).getName()}" />さん
+						<c:out value="${ThreadList.get(ThreadID).getName()}" />
 						<c:out value="${ThreadList.get(ThreadID).getAge()}" />歳
 						<c:choose>	
 							<c:when test="${counterbirth.get(ThreadID) == 365}">
@@ -69,7 +75,7 @@
 								<c:forEach var="i" begin="0" end="${CommentList.size()-1}" step="1">
 									<p>
 										<c:out value="${i+1}" />:
-										<c:out value="${CommentList.get(i).getName()}" />さん
+										<c:out value="${CommentList.get(i).getName()}" />
 										<c:out value="${CommentList.get(i).getAge()}" />歳
 										（<c:out value="${CommentList.get(i).getPostDate()}" />）<br>
 										　<c:out value="${CommentList.get(i).getComment()}" />

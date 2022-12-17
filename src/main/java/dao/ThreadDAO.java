@@ -17,16 +17,11 @@ import model.ThreadBean;
 
 public class ThreadDAO {
 	
-//	// データベースに接続
-//	private final String JDBC_URL =
-//	"jdbc:mysql://localhost/birthdaycounter?useSSL=false";
-//	private final String DB_USER = "root";
-//	private final String DB_PASS = "@municom";
-	
 	// データベースに接続
-	private final String JDBC_URL =System.getenv("JDBC_URL");
-	private final String DB_USER = System.getenv("DB_USER");
-	private final String DB_PASS =System.getenv("DB_PASS");
+	private final String JDBC_URL =
+	"jdbc:mysql://localhost/birthdaycounter?useSSL=false";
+	private final String DB_USER = "root";
+	private final String DB_PASS = "@municom";
 
 	//スレッドリスト読込用の処理
 	List<ThreadBean> threadList = new ArrayList<ThreadBean>();

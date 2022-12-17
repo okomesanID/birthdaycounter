@@ -24,6 +24,12 @@
 				<ul class="gnav-list">
 					<li class="gnav-item"><a href="Join">新規登録</a></li>
 				</ul>
+				<ul class="gnav-list">
+					<li class="gnav-item"><a href="Home">ホーム</a></li>
+				</ul>
+				<ul class="gnav-list">
+					<li class="gnav-item"><a href="Checker">生まれ年チェッカー</a></li>
+				</ul>
 			</nav>
 		</section>
 		
@@ -40,7 +46,7 @@
 							<!-- nameテキストボックス -->
 							<div class="name">
 								<p>ユーザー名</p>
-								<input type="text" name="name"class="m-form-text" value= "${recname}" /><br>
+								<input type="text" maxlength="10" name="name"class="m-form-text" value= "${recname}" /><br>
 								<c:if test="${not empty NameerrorMsg}">	
 									<div class="error"> <p>${NameerrorMsg}</p> </div>
 								</c:if>
@@ -49,7 +55,7 @@
 							<!-- passテキストボックス -->
 							<div class="pass"> 	
 								<p>パスワード</p>
-								<input type="password" name="pass"class="m-form-text"><br>
+								<input type="password" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]+$" name="pass"class="m-form-text"><br>
 								<c:if test="${not empty PasserrorMsg}">	
 									<div class="error"> <p>${PasserrorMsg}</p> </div>
 								</c:if>
