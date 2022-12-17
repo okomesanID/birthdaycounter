@@ -72,7 +72,6 @@
 						<div class="submit">
 							<input class="b b-back" type ="submit" value="  送信  "><br>
 						</div>
-						<p>※ログイン不要です</p>
 						
 						<c:if test="${not empty checkDate}">	
 							<div class="error"> <p>${checkDate}</p> </div>

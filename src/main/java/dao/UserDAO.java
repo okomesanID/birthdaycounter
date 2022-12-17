@@ -17,6 +17,7 @@ public class UserDAO {
 	"jdbc:mysql://localhost/birthdaycounter?useSSL=false";
 	private final String DB_USER = "root";
 	private final String DB_PASS = "@municom";
+
 	
 	//新規登録用の処理
 	public boolean UserList(UserBean user) {
