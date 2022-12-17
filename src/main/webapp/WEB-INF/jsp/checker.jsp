@@ -54,25 +54,25 @@
 							<section id="three">
 								<div class="birth"> 	
 									<p>西暦で誕生日を入力してください</p>
-									<input type="number" class="y-form-text"name="year" min="1" pattern="^[1-9][0-9]{0,4}$" placeholder="年" required>
-									<input type="number"  class="y-form-text"name="month"  min="1" max="12"pattern="^[1-9][0-9]{0,2}$"placeholder="月"required>
-									<input type="number"  class="y-form-text"name="day"min="1" max="31" pattern="^[1-9][0-9]{0,2}$"placeholder="日" required>
+									<input type="number" id="deleate1" class="y-form-text"name="year" min="1" pattern="^[1-9][0-9]{0,4}$" value= "${year}"placeholder="年" required>
+									<input type="number"  id="deleate2" class="y-form-text"name="month"  min="1" max="12"pattern="^[1-9][0-9]{0,2}$"value= "${month}"placeholder="月"required>
+									<input type="number"  id="deleate3" class="y-form-text"name="day"min="1" max="31" pattern="^[1-9][0-9]{0,2}$"value= "${day}"placeholder="日" required>
 								</div>
 							</section>
 							<section id="three">
 								<div class="birth"> 	
 									<p>西暦で計算日を入力してください</p>
-									<input type="number" id="input1" class="y-form-text"name="foryear" min="1" pattern="^[1-9][0-9]{0,4}$"value=""required>
-									<input type="number" id="input2" class="y-form-text"name="formonth" min="1" max="12"pattern="^[1-9][0-9]{0,2}$"placeholder="月"required>
-									<input type="number" id="input3" class="y-form-text"name="forday"min="1" max="31" pattern="^[1-9][0-9]{0,2}$"placeholder="日"required>
+									<input type="number" id="input1" class="y-form-text"name="foryear" min="1" pattern="^[1-9][0-9]{0,4}$"value= "${foryear}"placeholder="日"required>
+									<input type="number" id="input2" class="y-form-text"name="formonth" min="1" max="12"pattern="^[1-9][0-9]{0,2}$"value= "${formonth}"placeholder="月"required>
+									<input type="number" id="input3" class="y-form-text"name="forday"min="1" max="31" pattern="^[1-9][0-9]{0,2}$"value= "${forday}"placeholder="日"required>
 								</div>
 							</section>
 						</div>
 						<!-- 送信ボタン -->
 						<div class="submit">
 							<input class="b b-back" type ="submit" value="  送信  "><br>
+							<input class="b b-back two" type ="button" onclick="clearText()" value=" 削除 "><br>
 						</div>
-						
 						<c:if test="${not empty checkDate}">	
 							<div class="error"> <p>${checkDate}</p> </div>
 						</c:if>
@@ -100,6 +100,7 @@
 		
 		<script src="js/birth.js"></script>
 		<script src="js/number.js"></script>
+		<script src="js/button.js"></script>
 		
 		<script>
 		var today=new Date(); 

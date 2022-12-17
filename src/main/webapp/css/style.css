@@ -82,7 +82,8 @@
 		text-align: center;
 		top: 0;
 		width: 25em;
-		right: 0;
+		right: 0;  
+		z-index: 1;
 	}
 	@media screen and (max-width: 480px) {
 	#header {
@@ -110,8 +111,7 @@
 			z-index: 1;
 			opacity: 0.9;
 		}
-	}	
-
+	}		
 	#header a {
 		color: #d1f1e9;
 	}
@@ -377,9 +377,11 @@
 	}
 	.submit {
 		margin:20px auto;	
+		display: flex;
 	}
 	.submit input{
 		padding: 2px 0px;
+		margin: 0 10px;
 	}
 
 	.error p{
@@ -525,6 +527,42 @@
 	    outline: 0;
 	    box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
 	}
+	.submit {
+		margin:20px auto;	
+		display: flex;
+	}
+	
+	.b-back.two {
+		  font-size: 1rem;
+		  font-weight: 700;
+		  line-height: 1.5;
+		  position: relative;
+		  display: inline-block;
+		  padding: 0.5rem 0.5rem;
+		  cursor: pointer;
+		  -webkit-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		  -webkit-transition: all 0.3s;
+		  transition: all 0.3s;
+		  text-align: center;
+		  vertical-align: middle;
+		  text-decoration: none;
+		  letter-spacing: 0.1em;
+		  border-radius: 0.5rem;
+		  
+		  color: #FFFFFF;
+		  background-color: #FF3333;
+		  border: none;
+		  border-bottom: 5px solid #CC3300;
+	}
+	
+	.b-back.two:hover {
+		  margin-top: 3px;
+		  color: #FFFFFF;
+		  border-bottom: 2px solid #FF3333;
+	}
 /*----------------------------
 トップページ用
 ----------------------------*/
@@ -549,6 +587,170 @@
 /*----------------------------
 スマホ用
 ----------------------------*/	
+	@media screen and (max-width: 1366px) {
+		.thread {
+			 display: flex;
+			 flex-direction:column;
+			 justify-content: center;
+			 background: #f6f6f6;
+			 box-shadow: 0 0 0 2px #ccc inset;
+			 width: 50em;
+			 padding: 1em;
+			 margin: 10px;
+		}
+		.user-nav {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			background: #f6f6f6;
+			box-shadow: 0 0 0 2px #ccc inset;
+			width: 30em;
+			padding: 2em;
+		}
+		.CommentList {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			background: #f6f6f6;
+			box-shadow: 0 0 0 2px #ccc inset;
+			width: 50em;
+			padding: 1.5em;
+			margin: 0.5em auto;
+		}
+	}
+	
+	@media screen and (max-width: 912px) {
+		.respons{
+			width:100%;
+			background-color: #333333;
+			display: flex;
+		}
+		.respons a{
+			display:block;
+			color: #FFFF;
+			margin: auto;
+			margin-left: 10px;
+			font-weight: bold;
+			font-size: x-large;
+		}
+		.respons img{
+			display:block;
+			height: 30px;
+			margin-top: 8px;
+			margin-bottom: 8px;
+			margin-left: 50px;
+		}
+		.hamburger{
+			display:block;
+			width:50px;
+			height:50px;
+			background: #2BC49A;
+			cursor: pointer;
+			margin: 0 0 0 auto;
+			position: relative;
+			justify-content: center;
+		}
+		.hamburger span{
+			position: absolute;
+			width: 45%;
+			height: 2px;
+			background-color: #FFFFFF;;
+			margin: 0em 27%;
+		}
+		.hamburger span:first-of-type{/* ハンバーガーメニューの1番目の線 */
+			top: 15px;
+		}
+		.hamburger span:nth-of-type(2){/* ハンバーガーメニューの2番目の線 */
+			top: 25px;
+		}
+		.hamburger span:last-of-type{/* ハンバーガーメニューの3番目の線 */
+			top: 35px;
+		}
+		.off span:first-of-type{
+			transform: rotate(45deg);
+			top: 25px;
+		}
+		.off span:nth-of-type(2){
+			opacity: 0;
+		}
+		.off span:last-of-type{
+			transform: rotate(-45deg);
+			top: 26px;
+		}
+		#wrapper {
+		    background: #fff;
+		    padding-right: 0em;
+		}
+		.thread {
+		    display: flex;
+		    flex-direction: column;
+		    justify-content: center;
+		    background: #f6f6f6;
+		    box-shadow: 0 0 0 2px #ccc inset;
+		    width: 50em; 
+		    padding: 1em;
+		    margin: 10px;
+		}
+		.ThreadTitle {
+			display: flex;
+			justify-content: center;
+			flex-direction:column;
+			background: #f6f6f6;
+			box-shadow: 0 0 0 2px #ccc inset;
+			padding: 1.5em;
+			width: 40em;
+			margin: 2em auto;/*上下左右中央*/
+			text-align: center;
+		}
+		.CommentList {
+			display: flex;
+			justify-content: center;
+			flex-direction:column;
+			background: #f6f6f6;
+			box-shadow: 0 0 0 2px #ccc inset;
+			width:40em;
+			padding: 1.5em;
+			margin: 0.5em auto;/*上下左右中央*/
+		}
+		.form{
+			display: flex;
+			flex-direction:column;
+			justify-content: center;
+			background: #f6f6f6;
+			box-shadow: 0 0 0 2px #ccc inset;
+			width: 45em;
+			padding: 1em;
+			margin-top: 10%;
+		}
+		.sm {
+			top: 60px;
+			left: 0px;
+			position: absolute;
+			z-index: 10;
+			width: 100%;
+			background-color: rgba(34, 49, 52, 0.9);
+		}
+		
+		ul {
+			flex-direction: column;
+		}
+		
+		.r-form-text {
+		    height: 2.4em;
+		    width: 28%;
+		    padding: 0 15px;
+		    border-radius: 4px;
+		    border: none;
+		    box-shadow: 0 0 0 1px #ccc inset;
+		    appearance: none;
+		    -webkit-appearance: none;
+		    -moz-appearance: none;
+		    margin: 10px;
+		}
+		.Result p{
+			font-size: 15px;
+		}
+	}
 	@media screen and (max-width: 480px) {
 		#header{
 			display:none;
@@ -683,5 +885,5 @@
 		.Result p{
 			font-size: 15px;
 		}
+
 	}
-	

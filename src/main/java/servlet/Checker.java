@@ -71,6 +71,14 @@ public class Checker extends HttpServlet {
 				  session.setAttribute("progress",progress);
 				  session.setAttribute("days",days);
 				  
+				  //入力フォーム用
+				  session.setAttribute("year",year);
+				  session.setAttribute("month",month);
+				  session.setAttribute("day",day);
+				  session.setAttribute("foryear",foryear);
+				  session.setAttribute("formonth",formonth);
+				  session.setAttribute("formonth",formonth);
+				  
 				  //チェッカー画面にフォワード
 				  RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/checker.jsp");
 				  dispatcher.forward(request,response);
