@@ -77,18 +77,17 @@ public class Checker extends HttpServlet {
 				  session.setAttribute("day",day);
 				  session.setAttribute("foryear",foryear);
 				  session.setAttribute("formonth",formonth);
-				  session.setAttribute("formonth",formonth);
+				  session.setAttribute("forday",forday);
 				  
 				  //チェッカー画面にフォワード
-				  RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/checker.jsp");
-				  dispatcher.forward(request,response);
+				  response.sendRedirect("/birthdaycounter/Checker");
 			  }
 		  }
 		  else {
 			  request.setAttribute("checkDate", "不正な日付が入力されています");
 			  //チェッカー画面にフォワード
-			  RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/checker.jsp");
-			  dispatcher.forward(request,response);
+			  RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/checker.jsp"); 
+			  dispatcher.forward(request, response);
 		  }
 	 }
 }

@@ -1,7 +1,8 @@
 //年齢を計算するモデル
 package model;
 
-import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.MonthDay;
 import java.util.Calendar;
 import java.util.Date;
@@ -105,7 +106,10 @@ public class CheckerLogic {
 		     dteTemp2=calTemp2.getTime();
 		 }
 		 long days=(dteTemp2.getTime() -dteTemp1.getTime())/(24*60*60*1000);
-		 
+		 if(days == 365)
+		 {
+			 days = 0;
+		 }
 		 return days;
 	}
 	
@@ -146,12 +150,13 @@ public class CheckerLogic {
 		}
 		
 		strDate = strDate.replace('-', '/');
-		DateFormat format = DateFormat.getDateInstance();
+//		DateFormat format = DateFormat.getDateInstance();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 		format.setLenient(false);
 		try {
 			format.parse(strDate);
 			return true;
-		} catch (Exception e) {
+		} catch (ParseException e) {
 			return false;
 		}
 	
@@ -171,12 +176,13 @@ public class CheckerLogic {
 		}
 		
 		strDate = strDate.replace('-', '/');
-		DateFormat format = DateFormat.getDateInstance();
+//		DateFormat format = DateFormat.getDateInstance();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 		format.setLenient(false);
 		try {
 			format.parse(strDate);
 			return true;
-		} catch (Exception e) {
+		} catch (ParseException e) {
 			return false;
 		}
 	}

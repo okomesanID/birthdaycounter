@@ -87,6 +87,12 @@
 				<!-- 結果の出力 -->
 				<div class =Result>
 					<div class="resultage">
+						<p> 西暦<c:out value= "${year}" />年<c:out value= "${month}" />月<c:out value= "${day}" />月
+							～
+							西暦<c:out value= "${foryear}" />年<c:out value= "${formonth}" />月<c:out value= "${forday}" />月
+						</p>
+						<br><br>
+						
 						<p>満年齢：<input type="text" name="ReadOnlyField" class="r-form-text"readonly value=<c:out value= "${Checkage}" />>歳</p>
 						<p>数え年：<input type="text" name="ReadOnlyField" class="r-form-text"readonly value=<c:out value= "${Checkage2}" />>歳</p>
 						<p>干支：<input type="text" name="ReadOnlyField" class="r-form-text"readonly value=<c:out value= "${eto}" />></p>
